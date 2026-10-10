@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mobile Application Development - Assignment 02 Submission</title>
+<style>
+  @page {
+    size: A4;
+    margin: 18mm 16mm;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1e293b;
+    line-height: 1.5;
+    background-color: #f8fafc;
+    margin: 0;
+    padding: 24px;
+  }
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 36px 42px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    border: 1px solid #e2e8f0;
+  }
+  .header-table {
+    width: 100%;
+    border-bottom: 2px solid #4f46e5;
+    padding-bottom: 14px;
+    margin-bottom: 22px;
+  }
+  .course-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #0f172a;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+  }
+  .assign-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #4f46e5;
+    margin-top: 4px;
+  }
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    background: #f1f5f9;
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    font-size: 13.5px;
+  }
+  .meta-item strong {
+    color: #334155;
+  }
+  h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+    border-left: 4px solid #4f46e5;
+    padding-left: 10px;
+    margin-top: 24px;
+    margin-bottom: 12px;
+  }
+  .link-box {
+    background: #eef2ff;
+    border: 1px solid #c7d2fe;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    word-break: break-all;
+  }
+  .link-box a {
+    color: #4338ca;
+    font-weight: 700;
+    text-decoration: underline;
+    font-size: 14px;
+  }
+  .checklist-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 13px;
+  }
+  .checklist-table th, .checklist-table td {
+    border: 1px solid #cbd5e1;
+    padding: 8px 12px;
+    text-align: left;
+  }
+  .checklist-table th {
+    background: #f8fafc;
+    color: #334155;
+    font-weight: 700;
+  }
+  .badge-done {
+    background: #dcfce7;
+    color: #15803d;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 11px;
+    display: inline-block;
+  }
+  pre {
+    background: #0f172a;
+    color: #f8fafc;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    overflow-x: auto;
+    line-height: 1.45;
+  }
+  .screen-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .screen-card {
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 12px;
+    background: #ffffff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  }
+  .screen-card h3 {
+    margin: 0 0 6px 0;
+    font-size: 13px;
+    color: #4f46e5;
+  }
+  .screen-card p {
+    font-size: 11.5px;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.4;
+  }
+  .footer-note {
+    margin-top: 28px;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 14px;
+    font-size: 12px;
+    color: #64748b;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header-table">
+    <div class="course-title">Mobile Application Development</div>
+    <div class="assign-title">Assignment 02: Bottom Tab Bar, Splash Screen and App Icon</div>
+  </div>
+
+  <div class="meta-grid">
+    <div class="meta-item"><strong>Student Name:</strong> Afeef Ul Hussain</div>
+    <div class="meta-item"><strong>Total Marks:</strong> 10</div>
+    <div class="meta-item"><strong>Course:</strong> Mobile Application Development (MAD)</div>
+    <div class="meta-item"><strong>Due Date:</strong> 10 – Oct – 2026</div>
+  </div>
+
+  <h2>1. GitHub Repository Link</h2>
+  <div class="link-box">
+    <strong>Public Repository:</strong><br/>
+    <a href="https://github.com/afeefulhussain/MAD-Assignment-02" target="_blank">https://github.com/afeefulhussain/MAD-Assignment-02</a>
+  </div>
+
+  <h2>2. APK Installer & EAS Build Link</h2>
+  <div class="link-box">
+    <strong>EAS Project Dashboard:</strong><br/>
+    <a href="https://expo.dev/accounts/afeef-ul-hussain/projects/my-expo-app" target="_blank">https://expo.dev/accounts/afeef-ul-hussain/projects/my-expo-app</a><br/>
+    <span style="font-size: 12px; color: #475569; margin-top: 4px; display: inline-block;">
+      <strong>EAS Project ID:</strong> <code>7a56e7f0-20df-4a57-9505-f4c84cacb955</code> | <strong>Package:</strong> <code>com.afeef.madassignment02</code>
+    </span>
+  </div>
+
+  <h2>3. Proof of Assignment 01 Extension (Git Commits)</h2>
+  <p style="font-size: 13px; color: #475569;">
+    Per assignment requirements, Assignment 02 is developed directly on top of Assignment 01:
+  </p>
+  <pre><code>1166cbd Assignment 02: Add Bottom Tab Bar, Themed Components, Custom Splash Screen & App Icon
+85018ed Assignment 01: Initial React Native Expo application setup</code></pre>
+
+  <h2>4. Requirements Verification Checklist</h2>
+  <table class="checklist-table">
+    <thead>
+      <tr>
+        <th>Requirement</th>
+        <th>Status</th>
+        <th>Implementation File / Detail</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1. Add a New Bottom Tab Screen</strong></td>
+        <td><span class="badge-done">Completed</span></td>
+        <td><code>screens/ProfileScreen.js</code> (Student Profile, live theme switch, verification)</td>
+      </tr>
+      <tr>
+        <td><strong>2. Customize Splash Screen</strong></td>
+        <td><span class="badge-done">Completed</span></td>
+        <td><code>assets/splash-icon.png</code> with #0F172A background registered in <code>app.json</code></td>
+      </tr>
+      <tr>
+        <td><strong>3. Customize App Icon</strong></td>
+        <td><span class="badge-done">Completed</span></td>
+        <td><code>assets/icon.png</code> & adaptive icons (foreground/background/mono) in <code>app.json</code></td>
+      </tr>
+      <tr>
+        <td><strong>4. Themed Components</strong></td>
+        <td><span class="badge-done">Completed</span></td>
+        <td><code>components/ThemedView.js</code> and <code>components/ThemedText.js</code> in all screens</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>5. VS Code Project Folder Structure</h2>
+  <pre><code>my-expo-app/
+├── assets/
+│   ├── icon.png                      # Custom 1024x1024 app icon
+│   ├── splash-icon.png               # Custom branded splash screen
+│   ├── android-icon-foreground.png   # Android adaptive icon foreground
+│   ├── android-icon-background.png   # Android adaptive icon background
+│   └── favicon.png                   # Web favicon
+├── components/
+│   ├── ThemedText.js                 # Themed typography component
+│   └── ThemedView.js                 # Themed container component
+├── constants/
+│   └── Colors.js                     # Light & Dark color tokens
+├── context/
+│   └── ThemeContext.js               # Theme state & useAppTheme hook
+├── navigation/
+│   └── BottomTabNavigator.js         # Custom Bottom Tab Bar navigation
+├── screens/
+│   ├── HomeScreen.js                 # Tab 1: Refactored Assignment 01 screen
+│   ├── ExploreScreen.js              # Tab 2: MAD Course Modules
+│   └── ProfileScreen.js              # Tab 3: NEW Screen (Student & Theme Settings)
+├── App.js                            # App root with ThemeProvider
+├── app.json                          # Expo configuration (Splash, Icon, Package)
+├── eas.json                          # EAS build config for Android APK
+├── package.json                      # Dependencies
+└── README.md                         # Complete documentation with proof</code></pre>
+
+  <h2>6. Mobile App UI Screens Overview</h2>
+  <div class="screen-card-grid">
+    <div class="screen-card">
+      <h3>Tab 1: Home</h3>
+      <p>Refactored with ThemedView/ThemedText. Retains interactive counter & quick shortcuts.</p>
+    </div>
+    <div class="screen-card">
+      <h3>Tab 2: Modules</h3>
+      <p>Course syllabus, lecture tracking, interactive status pills built with themed components.</p>
+    </div>
+    <div class="screen-card">
+      <h3>Tab 3: Profile (NEW)</h3>
+      <p>Student bio, live Light/Dark/System theme switcher, and Assignment 02 checklist.</p>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    Submitted by <strong>Afeef Ul Hussain</strong> for Mobile Application Development (Fall 2026) • All requirements fulfilled.
+  </div>
+</div>
+
+</body>
+</html>
