@@ -6,7 +6,9 @@
 **Framework:** React Native (Expo SDK 57)  
 **Submission Date:** 10 – Oct – 2026  
 **EAS Project ID:** `7a56e7f0-20df-4a57-9505-f4c84cacb955`  
-**GitHub Repository:** [https://github.com/afeefulhussain/MAD-Assignment-02](https://github.com/afeefulhussain/MAD-Assignment-02)
+**GitHub Repository:** [https://github.com/afeefulhussain/MAD-Assignment-02](https://github.com/afeefulhussain/MAD-Assignment-02)  
+**📄 Official Submission PDF (Live Link):** [View / Download PDF](https://github.com/afeefulhussain/MAD-Assignment-02/blob/master/MAD_Assignment_02_Afeef_Ul_Hussain.pdf)
+
 
 ---
 
