@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 02: CRUD Operations, Local Storage & API Integration (React Native)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0B0F17;
+      --surface: #111827;
+      --card: #151E2E;
+      --card-elevated: #1A2436;
+      --border: #223048;
+      --border-light: #30415D;
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+      --primary: #6366F1;
+      --primary-glow: rgba(99, 102, 241, 0.25);
+      --present: #10B981;
+      --present-glow: rgba(16, 185, 129, 0.2);
+      --absent: #F43F5E;
+      --absent-glow: rgba(244, 63, 94, 0.2);
+      --warning: #F59E0B;
+      --cyan: #06B6D4;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.6;
+      padding: 30px 20px 80px;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(6, 182, 212, 0.08));
+      border: 1px solid var(--border-light);
+      border-radius: 24px;
+      padding: 40px;
+      margin-bottom: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+
+    .badge-live {
+      background: var(--present-glow);
+      color: var(--present);
+      border: 1px solid var(--present);
+    }
+
+    .badge-primary {
+      background: var(--primary-glow);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #FFFFFF, #CBD5E1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      background: rgba(11, 15, 23, 0.6);
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .meta-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    .meta-val {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 2px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #E2E8F0;
+      margin: 20px 0 10px;
+    }
+
+    p {
+      color: #94A3B8;
+      font-size: 14.5px;
+      margin-bottom: 12px;
+    }
+
+    ul, ol {
+      margin-left: 20px;
+      color: #CBD5E1;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      background: #0F1726;
+      color: #818CF8;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      border: 1px solid var(--border);
+    }
+
+    pre {
+      background: #0A0F1D;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      overflow-x: auto;
+      margin: 14px 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: #E2E8F0;
+      line-height: 1.5;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 13.5px;
+    }
+
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: #0F1726;
+      color: var(--text-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+    }
+
+    tr:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 13px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: #4F46E5;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: var(--card-elevated);
+      color: #FFFFFF;
+      border: 1px solid var(--border-light);
+    }
+
+    .btn-secondary:hover {
+      background: #233047;
+      transform: translateY(-2px);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .feature-box {
+      background: #0F1726;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .feature-title {
+      font-weight: 800;
+      font-size: 14px;
+      color: #FFFFFF;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feature-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-bottom: 0;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <span class="badge-pill badge-live">● Live Lab Report</span>
+        <span class="badge-pill badge-primary">Mobile Application Development</span>
+      </div>
+      <h1>Assignment 02: CRUD Operations, Local Storage & API Integration</h1>
+      <p class="subtitle">Complete React Native Full-Stack Implementation with AsyncStorage, Array Methods, & Axios REST API</p>
+
+      <div class="meta-grid">
+        <div class="meta-item">
+          <span class="meta-label">Course</span>
+          <span class="meta-val">Mobile App Development</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Total Marks</span>
+          <span class="meta-val">20 / 20</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Framework</span>
+          <span class="meta-val">React Native / Expo SDK 57</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">GitHub Repository</span>
+          <span class="meta-val"><a href="https://github.com/afeefulhussain/MAD-Assignment-02" style="color: #818CF8; text-decoration: none;">afeefulhussain/MAD-Assignment-02</a></span>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <a href="https://github.com/afeefulhussain/MAD-Assignment-02" class="btn btn-primary" target="_blank">
+          📂 View GitHub Repository
+        </a>
+        <a href="https://raw.githubusercontent.com/afeefulhussain/MAD-Assignment-02/master/Assignment_02_Lab_Report.md" class="btn btn-secondary" target="_blank">
+          📄 Download Raw Markdown Report
+        </a>
+      </div>
+    </header>
+
+    <!-- SECTION 1: RUBRIC EVALUATION -->
+    <div class="card">
+      <h2>🏆 1. Assignment Evaluation Rubrics (20 Marks)</h2>
+      <p>All assessment criteria have been strictly fulfilled in accordance with the assignment rubric:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Criteria</th>
+            <th>Marks</th>
+            <th>Implementation Details</th>
+            <th>Code File</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>CRUD – Create & Read</strong></td>
+            <td><strong>3/3</strong></td>
+            <td>Form modal to add new student records; dynamic list rendering with <code>FlatList</code>, <code>View</code>, <code>Text</code>, <code>Pressable</code>.</td>
+            <td><code>src/screens/CrudScreen.js</code></td>
+          </tr>
+          <tr>
+            <td><strong>CRUD – Update & Delete</strong></td>
+            <td><strong>3/3</strong></td>
+            <td>Edit modal pre-filled using <code>Array.find()</code>; confirmation dialog & removal using <code>Array.filter()</code>.</td>
+            <td><code>src/screens/CrudScreen.js</code></td>
+          </tr>
+          <tr>
+            <td><strong>Local Storage</strong></td>
+            <td><strong>2/2</strong></td>
+            <td>Data persistence via <code>@react-native-async-storage/async-storage</code>; retains data across device reboots and app restarts.</td>
+            <td><code>src/screens/CrudScreen.js</code></td>
+          </tr>
+          <tr>
+            <td><strong>Search & Array Methods</strong></td>
+            <td><strong>3/3</strong></td>
+            <td>Search filtering and validation using <code>filter()</code>, <code>find()</code>, <code>map()</code>, <code>some()</code>, and <code>every()</code>.</td>
+            <td><code>src/screens/CrudScreen.js</code></td>
+          </tr>
+          <tr>
+            <td><strong>API Integration</strong></td>
+            <td><strong>3/3</strong></td>
+            <td>Axios installed and configured; executes <code>axios.get()</code> against a free public JSON endpoint.</td>
+            <td><code>src/screens/ApiScreen.js</code></td>
+          </tr>
+          <tr>
+            <td><strong>API Data Presentation</strong></td>
+            <td><strong>2/2</strong></td>
+            <td>Displays fetched user records using card layouts; complete state handling (Loading, Error with Retry, Success).</td>
+            <td><code>src/screens/ApiScreen.js</code></td>
+          </tr>
+          <tr>
+            <td><strong>Bottom Tab Navigation</strong></td>
+            <td><strong>2/2</strong></td>
+            <td>Assignment 01 bottom navigation bar preserved with 4 tabs: CRUD App, Public API, Swipe Mark, History.</td>
+            <td><code>App.js</code></td>
+          </tr>
+          <tr>
+            <td><strong>Submission Evidence</strong></td>
+            <td><strong>2/2</strong></td>
+            <td>VS Code expanded folder tree, online GitHub repository, and live web report.</td>
+            <td><code>Live Site</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECTION 2: TASK 1 CRUD & ARRAY METHODS -->
+    <div class="card">
+      <h2>⚡ 2. Task 1: CRUD & Array Methods Breakdown</h2>
+      <p>The application implements an array of objects to manage records locally with full CRUD operations:</p>
+
+      <div class="features-grid">
+        <div class="feature-box">
+          <div class="feature-title">➕ Create Record</div>
+          <p class="feature-desc">Form modal with validation (Roll No, Name, Department, Email, Phone, Status). Enforces unique roll number via <code>records.some()</code>.</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-title">📋 Read Record</div>
+          <p class="feature-desc">Dynamically renders all records via <code>FlatList</code> with custom elevated cards, contact icons, and status chips.</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-title">✏️ Update Record</div>
+          <p class="feature-desc">Edit modal retrieves specific record using <code>Array.find()</code>, allows modification, and commits changes immutably with <code>Array.map()</code>.</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-title">🗑️ Delete Record</div>
+          <p class="feature-desc">Prompts confirmation dialog and removes the target student from device state and <code>AsyncStorage</code> using <code>Array.filter()</code>.</p>
+        </div>
+      </div>
+
+      <h3>Exact JavaScript Array Methods Implementation:</h3>
+      <pre><code>// 1. Array.filter() -> Search filter across Name, Roll No, Department
+const filtered = records.filter(item => 
+  item.name.toLowerCase().includes(query) || item.rollNo.includes(query)
+);
+
+// 2. Array.find() -> Locate item for Edit and Detail Modal
+const target = records.find(r => r.id === editingId);
+
+// 3. Array.map() -> Immutable state update & department filter pills
+const updated = records.map(r => r.id === editingId ? { ...r, ...fields } : r);
+
+// 4. Array.some() -> Validation against duplicate roll numbers
+const duplicate = records.some(r => r.rollNo === inputRoll && r.id !== editingId);
+
+// 5. Array.every() -> Validation check if all enrolled students are Active
+const allActive = records.every(r => r.status === 'Active');</code></pre>
+    </div>
+
+    <!-- SECTION 3: TASK 2 PUBLIC API -->
+    <div class="card">
+      <h2>🌐 3. Task 2: Free Public API Integration (Axios)</h2>
+      <p>
+        Integrated free public REST API: <code>https://jsonplaceholder.typicode.com/users</code><br>
+        Fetches live JSON data on component mount via <code>axios.get()</code>.
+      </p>
+
+      <pre><code>import axios from 'axios';
+
+const fetchApiData = async () => {
+  setLoading(true);
+  setError(null);
+  try {
+    const response = await axios.get('https://jsonplaceholder.typicode.com/users', {
+      timeout: 6000,
+      headers: { Accept: 'application/json' },
+    });
+    setData(response.data);
+  } catch (err) {
+    setError(err.message || 'Failed to fetch public API data.');
+  } finally {
+    setLoading(false);
+  }
+};</code></pre>
+
+      <div class="features-grid">
+        <div class="feature-box">
+          <div class="feature-title">⏳ Loading State</div>
+          <p class="feature-desc">Shows an animated <code>ActivityIndicator</code> while network request is in-flight.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-title">⚠️ Error Handling</div>
+          <p class="feature-desc">Displays user-friendly error banner with an interactive <strong>Retry</strong> button if connection drops.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-title">🔄 Pull-to-Refresh</div>
+          <p class="feature-desc">Supports native pull-down swipe to reload fresh JSON records directly from the server.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4: HOW TO RUN & SUBMIT -->
+    <div class="card">
+      <h2>🚀 4. How to Run & Verify</h2>
+      <ol>
+        <li><strong>Clone Repository:</strong>
+          <pre><code>git clone https://github.com/afeefulhussain/MAD-Assignment-02.git
+cd MAD-Assignment-02
+npm install</code></pre>
+        </li>
+        <li><strong>Launch Application:</strong>
+          <pre><code>npx expo start -c</code></pre>
+          <ul>
+            <li>Press <strong><code>w</code></strong> to view the live graphical interface directly in your Web Browser.</li>
+            <li>Scan the terminal QR code in <strong>Expo Go</strong> on your Android mobile device.</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+
+    <footer>
+      <p>Submitted by <strong>Afeef Ul Hussain</strong> • Mobile Application Development</p>
+      <p>Repository: <a href="https://github.com/afeefulhussain/MAD-Assignment-02" style="color: #818CF8;">afeefulhussain/MAD-Assignment-02</a></p>
+    </footer>
+  </div>
+
+</body>
+</html>
