@@ -1,0 +1,5 @@
+backend/
+dist/
+.expo/
+*.md
+index.html
