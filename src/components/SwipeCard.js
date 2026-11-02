@@ -30,7 +30,7 @@ export default function SwipeCard({
           Animated.timing(pan, {
             toValue: { x, y: 0 },
             duration: 220,
-            useNativeDriver: true,
+            useNativeDriver: false,
           }).start(() => {
             onSwipe(direction, student);
             pan.setValue({ x: 0, y: 0 });
@@ -52,7 +52,7 @@ export default function SwipeCard({
           Animated.timing(pan, {
             toValue: { x: SCREEN_WIDTH * 1.35, y: gestureState.dy },
             duration: 200,
-            useNativeDriver: true,
+            useNativeDriver: false,
           }).start(() => {
             onSwipe('PRESENT', student);
             pan.setValue({ x: 0, y: 0 });
@@ -62,7 +62,7 @@ export default function SwipeCard({
           Animated.timing(pan, {
             toValue: { x: -SCREEN_WIDTH * 1.35, y: gestureState.dy },
             duration: 200,
-            useNativeDriver: true,
+            useNativeDriver: false,
           }).start(() => {
             onSwipe('ABSENT', student);
             pan.setValue({ x: 0, y: 0 });
@@ -73,7 +73,7 @@ export default function SwipeCard({
             toValue: { x: 0, y: 0 },
             friction: 5,
             tension: 40,
-            useNativeDriver: true,
+            useNativeDriver: false,
           }).start();
         }
       },

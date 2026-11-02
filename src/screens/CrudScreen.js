@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import {
-  StyleSheet,
+  Platform,
   View,
   Text,
   TextInput,
@@ -198,6 +198,15 @@ export default function CrudScreen() {
     // Find record details using Array.find()
     const target = records.find((r) => r.id === id);
     if (!target) return;
+
+    if (Platform.OS === 'web') {
+      const confirmed = typeof window !== 'undefined' && window.confirm ? window.confirm(`Are you sure you want to delete ${target.name} (Roll #${target.rollNo})?`) : true;
+      if (confirmed) {
+        const updated = records.filter((r) => r.id !== id);
+        persistRecords(updated);
+      }
+      return;
+    }
 
     Alert.alert(
       'Delete Record',
